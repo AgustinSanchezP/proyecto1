@@ -12,4 +12,5 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  titulo:string = 'Bootcamp angular semana 2';
 }
