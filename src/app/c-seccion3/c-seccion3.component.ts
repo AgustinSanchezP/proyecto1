@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Product } from '../models/Product';
+import { ProductosService } from '../servicio/productos.service';
+
 
 @Component({
   selector: 'app-c-seccion3',
@@ -10,9 +13,13 @@ export class CSeccion3Component implements OnInit {
 
   ciudad: string = '';
   poblacion: string = '';
+  productos: Product[] = [];
 
 
-  constructor(private route:ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private productosService: ProductosService) {
+    this.productos = productosService.listadoProductos(); }
+
+
 
   ngOnInit(): void {
     this.route.params.subscribe ( (params) => {

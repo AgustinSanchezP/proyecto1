@@ -1,2 +1,29 @@
 <p>Seccion 2</p>
-<label *ngIf="nombrePersona">Protagonizado por: {{nombrePersona}}</label>
+<form [formGroup]="formEnviarComentario" class="form-inline">
+  <div class="row mx-auto">
+
+    <div class="form-group mb-2">
+      <label class="label-form" for="nombre">Nombre: </label>
+      <input type="text" id="nombre" class="form-control" placeholder="Nombre" formControlName="nombre" required>
+      <div class="input-group-append form-control-feedback" *ngIf="f.nombre.errors">
+        <p *ngIf="f.nombre.errors.required" class="error-validate"> *Obligatorio</p>
+        <p *ngIf="f.nombre.errors.minlength" class="error-validate"> *Debe contener mínimo 1 caracter</p>
+      </div>
+    </div>
+
+    <div class="form-group mb-2">
+      <label class="label-form" for="comentario">Comentario: </label>
+      <input type="text" id="comentario" class="form-control" placeholder="Comentario" formControlName="comentario" required>
+      <div class="input-group-append form-control-feedback" *ngIf="f.comentario.errors">
+        <p *ngIf="f.comentario.errors.required" class="error-validate"> *Obligatorio</p>
+        <p *ngIf="f.comentario.errors.minlength" class="error-validate"> *Debe contener mínimo 10 caracteres</p>
+      </div>
+    </div>
+
+    <div class="form-group mb-2">
+      <button type="submit" class="btn btn-primary btn-xsm"
+      (click)="f">Enviar</button>
+    </div>
+
+  </div>
+</form>

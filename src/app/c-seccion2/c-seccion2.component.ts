@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -7,15 +8,21 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./c-seccion2.component.css']
 })
 export class CSeccion2Component implements OnInit {
-  nombrePersona:string='';
-  constructor(private route:ActivatedRoute) { }
+  formEnviarComentario: FormGroup = new FormGroup({
+    nombre: new FormControl('nombre', Validators.required),
+    comentario: new FormControl('comentario', [Validators.required, Validators.minLength(10)])
+  });
+
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe ( (params) => {
-      if (params['nombre'] != null) {
-        this.nombrePersona = params['nombre'];
-      }
-    });
-  }
+    }
 
+
+  get f(){return this.formEnviarComentario.value}
 }
+
+  // EnviarComentario(){
+  //   console.log('Usuario: ' + nombre + 'comentario: ' + comentario);
+  // }
+
